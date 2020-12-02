@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"github.com/pkg/errors"
 )
 
@@ -23,7 +22,7 @@ func editArticle(id int) (Article, error) {
 
 	if err != nil {
 		if errors.Is(err, RecordNotFoundError) {
-			return article, errors.Wrapf(err, fmt.Sprintf("can not edit an not exist article : %d", id))
+			return article, errors.Wrapf(err, "can not edit an not exist article : %d", id)
 		}
 	}
 
