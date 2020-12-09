@@ -1,10 +1,3 @@
-
-### 作业：
-Q : 基于 errgroup 实现一个 http server 的启动和关闭 ，以及 linux signal 信号的注册和处理，要保证能够 一个退出，全部注销退出。
-
-##### 回答：
-如下为具体实现 :
-```go
 package main
 
 import (
@@ -104,27 +97,3 @@ func httpHandler(rsp http.ResponseWriter, rqs *http.Request) {
 
 	_, _ = fmt.Fprintf(rsp, fmt.Sprintf("request %s", rqs.URL))
 }
-```
-
-
-执行流程如下:
-```
-➜  Week03 git:(main) ✗ go run main.go
-# 启动2个server
-[server:10086] booting ...
-[debug:10010] booting ...
-
-# 处理请求
-http rqs /index
-http rqs /index
-
-# ctrl+c 发送interrupt sinal
-^C
-got signal : interrupt 
-
-# 影响signal退出server
-[server:10086] : stoping ... 
-[debug:10010] : stoping ... 
-server was stoped by signal 
-all server stop, program quit
-```
